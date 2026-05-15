@@ -1,40 +1,43 @@
+// Shadcn UI Komponente importieren
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card,CardContent,CardDescription,CardFooter,CardHeader,CardTitle,} from "@/components/ui/card"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+
+// vorbereitete Komponente
+import { DataChart } from "@/components/DataChart"
+import { DataList } from "@/components/DataList"
+import { DataTable } from "@/components/DataTable"
+
+// Datenfunktionen
+import {DataFahrzeugbestand} from "@/lib/dataimport"
 
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
+    <div className="flex flex-col gap-y-5">
+      <Card>
+        <CardHeader>
+          <CardTitle>Tabelle der Daten zu Kraftfahrzeugsbeständen</CardTitle>
+        </CardHeader>
         <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
+          <ScrollArea className="h-140">
+            <DataTable dataset={DataFahrzeugbestand}></DataTable>
+            <ScrollBar orientation="horizontal"/>
+          </ScrollArea>
         </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-        <div>
-          <Card className="max-w-sm">
-            <CardHeader>
-              <CardTitle>Project Overview</CardTitle>
-              <CardDescription>
-                Track progress and recent activity for your Next.js app.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-                Your design system is ready. Start building your next component.
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+        <CardFooter>
+          Manche Messungen existieren erst ab einem bestimmten Zeitraum, deshalb entstehen teilweise Lücken in der Tabelle
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Gesamtanzahl der registrierten Kraftfahrzeuge</CardTitle>
+        </CardHeader>
+        <DataChart dataset={
+          DataFahrzeugbestand.filter((obj:any) => obj.merkmal_2 === "insgesamt")
+        }>
+        </DataChart>
+      </Card>
     </div>
   )
 }
