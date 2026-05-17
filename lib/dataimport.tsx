@@ -6,4 +6,5 @@ async function getdata(Datenauswahl:any) {
     return content
 }
 
+export const DataVerkehrsunfälleQuartal = await getdata("https://statistik.leipzig.de/opendata/api/values?kategorie_nr=10&rubrik_nr=3&periode=q&format=json")
 export const DataFahrzeugbestand = await getdata("https://statistik.leipzig.de/opendata/api/values?kategorie_nr=10&rubrik_nr=2&periode=y&format=json")

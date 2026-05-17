@@ -12,9 +12,9 @@ export function DataTable({dataset}:{dataset:any}) {
     // 2. Kategorien durchgehen, jeweils das dataset filtern und passende Daten in eine Cell packen
     return(
     <Table className="flex w-full">
-            <TableBody className="w-full">
+            <TableBody>
                 <TableRow> 
-                    <TableHead></TableHead>  
+                    <TableHead className="sticky left-0 bg-white"></TableHead>  
                     {Jahre.map((o:any) =>
                     <TableHead key={o}>{o}</TableHead>
                     )}
@@ -22,7 +22,7 @@ export function DataTable({dataset}:{dataset:any}) {
                 
                 {Kategorien.map((cat:any) =>
                     <TableRow>
-                        <TableCell>{cat}</TableCell>
+                        <TableCell className="sticky left-0 bg-white">{cat}</TableCell>
                         {dataset.filter((i:any) => i.name == cat).map((o:any) =>
                             <TableCell>{o.wert}</TableCell>
                         )}

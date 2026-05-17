@@ -3,6 +3,8 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 
+// alles noch veraltet
+
 export function DataList({dataset}:{dataset:any}) {
     return(
         <ScrollArea className="flex h-100">
