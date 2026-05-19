@@ -5,7 +5,6 @@ import { Card,CardContent,CardDescription,CardFooter,CardHeader,CardTitle,} from
 import { DataChart } from "@/components/DataChart"
 import { DataTable } from "@/components/DataTable"
 import { DataMap } from "@/components/DataMap"
-//import MapKern from "@/components/MapKern"
 
 // Daten
 import {
