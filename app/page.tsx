@@ -3,10 +3,9 @@ import { Card,CardContent,CardDescription,CardFooter,CardHeader,CardTitle,} from
 
 // vorbereitete Komponente
 import { DataChart } from "@/components/DataChart"
-//import { DataList } from "@/components/DataList"
 import { DataTable } from "@/components/DataTable"
-//import { DataMap } from "@/components/DataMap"
-import MapKern from "@/components/MapKern"
+import { DataMap } from "@/components/DataMap"
+//import MapKern from "@/components/MapKern"
 
 // Daten
 import {
@@ -27,7 +26,7 @@ export default function Page() {
             <CardTitle>Aktuelle Verkehrseinschränkungen im Raum Leipzig</CardTitle>
           </CardHeader>
           <CardContent>
-            <MapKern Dataset={DataVerkehrseinschraenkungen} Koordinaten={[51.34572588726978, 12.372624668978824]} Zoom="12"></MapKern>
+            <DataMap Dataset={DataVerkehrseinschraenkungen} Koordinaten={[51.34572588726978, 12.372624668978824]} Zoom="12"></DataMap>
           </CardContent>
           <CardFooter>Hover für Information</CardFooter>
         </Card>
