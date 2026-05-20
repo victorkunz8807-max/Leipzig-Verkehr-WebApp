@@ -6,18 +6,22 @@ import { DataChart } from "@/components/DataChart"
 import { DataTable } from "@/components/DataTable"
 import { DataMap } from "@/components/DataMap"
 
-// Daten
-import {
-  DataFahrzeugbestand,
-  DataVerkehrsunfälleQuartal,
-  DataVerkehrseinschraenkungen
-} from "@/lib/dataimport"
+// Funktion zum Datenladen
+import { getdata } from "@/lib/dataimport"
 
 
+export default async function Page() {
 
-export default function Page() {
+// Datensätze besorgen
+ const DataVerkehrsunfälleQuartal = await getdata("https://statistik.leipzig.de/opendata/api/values?kategorie_nr=10&rubrik_nr=3&periode=q&format=json")
+ const DataFahrzeugbestand = await getdata("https://statistik.leipzig.de/opendata/api/values?kategorie_nr=10&rubrik_nr=2&periode=y&format=json")
+ const DataVerkehrseinschraenkungen = await getdata("https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3Averkehrsraumeinschraenkungen&outputFormat=application/json&SRSNAME=EPSG:4326")
+ const DataPersonenNahVerkehr = await getdata("https://statistik.leipzig.de/opendata/api/values?kategorie_nr=10&rubrik_nr=4&periode=y&format=json")
+
+
+// Die eigentliche Seite
   return (
-    <div className="flex gap-x-10 w-screen h-300 px-4 border border-red-500">
+    <div className="flex gap-x-10 w-500 h-400 px-4">
      
       <div className="w-4/10">
         <Card>
@@ -33,13 +37,13 @@ export default function Page() {
 
       <div className="flex w-full gap-x-5 h-full">
             <div className="flex flex-col w-3/10 overflow-y-auto">
-              <Card className="items-center flex w-full overflow-y-auto flex-col gap-y-5">
-                <CardContent className="flex h-full w-full flex-col gap-y-5">
+              <Card>
+                <CardContent className="flex h-full w-full flex-col gap-y-8">
                 <Card>
                   <CardHeader>
                     <CardTitle>Tabelle der Daten zu Verkehrsunfällen nach Quartal</CardTitle>
                   </CardHeader>
-                  <div className="overflow-x-auto">
+                  <div className="flex">
                     <DataTable dataset={DataVerkehrsunfälleQuartal}></DataTable>
                   </div>
                 </Card>
@@ -51,13 +55,13 @@ export default function Page() {
             </div>
             
             <div className="flex flex-col w-3/10 h-9/10">
-              <Card className="items-center flex w-full  overflow-y-auto flex-col gap-y-5">
-                <CardContent className="w-full h-full flex flex-col">
+              <Card>
+                <CardContent className="flex h-full w-full flex-col gap-y-8">
                 <Card>
                   <CardHeader>
                     <CardTitle>Tabelle der Daten zu Kraftfahrzeugsbeständen</CardTitle>
                   </CardHeader>
-                  <div className="overflow-x-auto">
+                  <div className="flex">
                     <DataTable dataset={DataFahrzeugbestand}></DataTable>
                   </div>
                   <CardFooter>
@@ -70,8 +74,23 @@ export default function Page() {
                 </CardContent>
               </Card>
             </div>
+
+            <div className="flex flex-col w-3/10 h-9/10">
+              <Card>
+                <CardContent className="flex h-full w-full flex-col gap-y-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Tabelle der Daten zum Personennahverkehr</CardTitle>
+                  </CardHeader>
+                  <div className="flex">
+                    <DataTable dataset={DataPersonenNahVerkehr}></DataTable>
+                  </div>
+                </Card>
+                </CardContent>
+              </Card>
+            </div>
+
       </div>
-      
     </div>
   )
 }
