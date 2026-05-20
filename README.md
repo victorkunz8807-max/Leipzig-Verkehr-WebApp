@@ -1,21 +1,7 @@
-# Next.js template
+# Leipzig Verkehr Dashboard
 
-This is a Next.js template with shadcn/ui.
+Diese Web-App dient zur Visualisierung von einzelnen Verkehrs-bezogenen Datensätzen aus dem OpenData-Portal der Stadt Leipzig 
 
-## Adding components
-
-To add components to your app, run the following command:
-
-```bash
-npx shadcn@latest add button
-```
-
-This will place the ui components in the `components` directory.
-
-## Using components
-
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button";
-```
+Diese App basiert auf Next.js und React als framework,
+Tailwind CSS und ShadCN werden für das UI verwendet,
+Leaflet gemeinsam mit der Erweiterung React-Leaflet ermöglichen das rendern einer geographischen Karte
